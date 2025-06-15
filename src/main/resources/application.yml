@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: conversational-pgvector
+  datasource:
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    show-sql: true
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      chat:
+        options:
+          model: gpt-4
+      embedding:
+        options:
+          model: text-embedding-ada-002
+    vectorstore:
+      pgvector:
+        index-type: hnsw
+        distance-type: cosine_distance
+        dimensions: 1536
+  sql:
+    init:
+      continue-on-error: false
+      mode: always
+file:
+  storage:
+    type: azure #azure, s3, local
+    azure:
+      connection-string: ${AZURE_CONNECTION_STRING}
+      container-name: ${AZURE_CONTAINER_NAME}
+    local:
+      base-path: ${LOCAL_BASE_PATH}
