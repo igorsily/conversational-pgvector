@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.br.winlogic</groupId>
     <artifactId>conversational-pgvector</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.0</version>
     <name>conversational-pgvector</name>
     <description>conversational-pgvector</description>
     <url/>
@@ -92,7 +92,12 @@
             <artifactId>mapstruct</artifactId>
             <version>${org.mapstruct.version}</version>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/io.awspring.cloud/spring-cloud-aws-starter-s3 -->
+        <dependency>
+            <groupId>io.awspring.cloud</groupId>
+            <artifactId>spring-cloud-aws-starter-s3</artifactId>
+            <version>3.4.0</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -119,6 +124,7 @@
                         <path>
                             <groupId>org.springframework.boot</groupId>
                             <artifactId>spring-boot-configuration-processor</artifactId>
+                            <version>3.5.0</version>
                         </path>
                         <path>
                             <groupId>org.mapstruct</groupId>

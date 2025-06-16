@@ -2,6 +2,7 @@ package com.br.winlogic.conversationalpgvector.config;
 
 import com.br.winlogic.conversationalpgvector.adapter.out.AzureBlobStorageAdapter;
 import com.br.winlogic.conversationalpgvector.adapter.out.LocalFileStorageAdapter;
+import com.br.winlogic.conversationalpgvector.adapter.out.S3StorageAdapter;
 import com.br.winlogic.conversationalpgvector.application.port.out.FileStoragePort;
 import com.br.winlogic.conversationalpgvector.config.properties.FileStorageProperties;
 import org.slf4j.Logger;
@@ -44,6 +45,20 @@ public class FileStorageConfig {
         return new LocalFileStorageAdapter(
                 properties.getLocal().getBasePath()
         );
+    }
+
+    @Bean
+    @ConditionalOnProperty(name = "file.storage.type", havingValue = "s3")
+    public FileStoragePort s3Storage() {
+
+        logger.info("S3 FILE STORAGE ADAPTER ENABLED");
+
+        return new S3StorageAdapter(
+                properties.getS3().getAccessKey(),
+                properties.getS3().getSecretKey(),
+                properties.getS3().getBucketName()
+        );
+
     }
 
 }

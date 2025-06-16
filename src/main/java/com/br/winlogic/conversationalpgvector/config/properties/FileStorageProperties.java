@@ -8,6 +8,7 @@ public class FileStorageProperties {
     private String type;
     private final Local local = new Local();
     private final Azure azure = new Azure();
+    private final S3 s3 = new S3();
 
     public String getType() {
         return type;
@@ -23,6 +24,10 @@ public class FileStorageProperties {
 
     public Azure getAzure() {
         return azure;
+    }
+
+    public S3 getS3() {
+        return s3;
     }
 
     public static class Local {
@@ -55,6 +60,36 @@ public class FileStorageProperties {
 
         public void setContainerName(String containerName) {
             this.containerName = containerName;
+        }
+    }
+
+    public static class S3 {
+        private String accessKey;
+        private String secretKey;
+        private String bucketName;
+
+        public String getAccessKey() {
+            return accessKey;
+        }
+
+        public void setAccessKey(String accessKey) {
+            this.accessKey = accessKey;
+        }
+
+        public String getSecretKey() {
+            return secretKey;
+        }
+
+        public void setSecretKey(String secretKey) {
+            this.secretKey = secretKey;
+        }
+
+        public String getBucketName() {
+            return bucketName;
+        }
+
+        public void setBucketName(String bucketName) {
+            this.bucketName = bucketName;
         }
     }
 }
