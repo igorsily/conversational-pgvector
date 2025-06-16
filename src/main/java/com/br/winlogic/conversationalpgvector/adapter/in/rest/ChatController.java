@@ -1,9 +1,8 @@
 package com.br.winlogic.conversationalpgvector.adapter.in.rest;
 
+import com.br.winlogic.conversationalpgvector.adapter.in.rest.dto.ChatRequest;
 import com.br.winlogic.conversationalpgvector.application.service.ChatService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/chat")
@@ -15,8 +14,8 @@ public class ChatController {
         this.chatService = chatService;
     }
 
-    @GetMapping
-    public String chat(String message) {
-        return chatService.chat(message);
+    @PostMapping
+    public String chat(@RequestBody ChatRequest request) {
+        return chatService.chat(request.message());
     }
 }

@@ -24,7 +24,7 @@ spring:
   sql:
     init:
       continue-on-error: false
-      mode: always
+      mode: never
 file:
   storage:
     type: azure #azure, s3, local

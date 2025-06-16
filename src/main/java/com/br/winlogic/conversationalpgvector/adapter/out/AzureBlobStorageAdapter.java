@@ -1,9 +1,11 @@
 package com.br.winlogic.conversationalpgvector.adapter.out;
 
 import com.azure.storage.blob.*;
+import com.azure.storage.blob.models.BlobItem;
 import com.br.winlogic.conversationalpgvector.application.port.out.FileStoragePort;
 
 import java.io.InputStream;
+import java.util.List;
 
 public class AzureBlobStorageAdapter implements FileStoragePort {
 
@@ -50,6 +52,20 @@ public class AzureBlobStorageAdapter implements FileStoragePort {
 
         this.getBlobClient(path).deleteIfExists();
     }
+
+    private List<String> listFiles() {
+        return containerClient.listBlobs().stream()
+                .map(BlobItem::getName)
+                .toList();
+    }
+
+//    @Override
+//    public List<InputStream> readAllFiles() {
+//        return containerClient.listBlobs().stream()
+//                .map(BlobItem::getName)
+//                .map(this::load)
+//                .toList();
+//    }
 
     private BlobClient getBlobClient(String path) {
         return containerClient.getBlobClient(path);
